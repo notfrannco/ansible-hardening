@@ -1,0 +1,7 @@
+---
+ssh_login_banner: " ********************************************    ADVERTENCIA    ***************************************************\n
+                   *                                                                                                                *\n
+                   * Banner de seguridad custom con politicas de seguridad e informacion legal sobre los servidores a administrar   *\n
+                   * en el entorno de qa                                                                                            *\n
+                   ******************************************************************************************************************\n"
+...

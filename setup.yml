@@ -1,0 +1,21 @@
+---
+- name: Hosts setup for oscap scan 
+  hosts: all
+  gather_facts: true
+  strategy: free
+  become: true
+  vars:
+    data_stream_home: "/usr/share/xml/scap/ssg/content/"
+  tasks:
+    - name: Install necesary packages
+      package:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - openscap-scanner
+        - scap-security-guide
+
+    - name: Copy custom policies 
+      copy:
+        src: files/ds/ssg-{{ ansible_distribution }}{{ ansible_distribution_major_version }}-ds-tailoring-custom-lab.xml
+        dest: "{{ data_stream_home }}"
