@@ -1,3 +1,8 @@
-master ansible_host=192.168.102.236
-slave1 ansible_host=192.168.102.237 
-slave2 ansible_host=192.168.102.235
+[all]
+server1 ansible_host=192.168.102.246
+server2 ansible_host=192.168.102.247
+server3 ansible_host=192.168.102.248
+
+
+[proxy]
+server3
