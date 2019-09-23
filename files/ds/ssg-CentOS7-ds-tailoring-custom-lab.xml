@@ -2,9 +2,23 @@
 <xccdf:Tailoring xmlns:xccdf="http://checklists.nist.gov/xccdf/1.2" id="xccdf_scap-workbench_tailoring_default">
   <xccdf:benchmark href="/tmp/SCAP Workbench-fDVIdg/ssg-centos7-ds.xml"/>
   <xccdf:version time="2019-08-18T19:09:03">1</xccdf:version>
-  <xccdf:Profile id="xccdf_py.com.miempresa_profile_custom-hardening-lab" extends="xccdf_org.ssgproject.content_profile_pci-dss">
+  <xccdf:Profile id="xccdf_py.com.miempresa_profile_custom-hardening-lab">
     <xccdf:title xmlns:xhtml="http://www.w3.org/1999/xhtml" xml:lang="en-US" override="true">PCI-DSS v3.2.1 Control Baseline for Red Hat Enterprise Linux 7 [CUSTOMIZED]</xccdf:title>
     <xccdf:description xmlns:xhtml="http://www.w3.org/1999/xhtml" xml:lang="en-US" override="true">Ensures PCI-DSS v3.2.1 security configuration settings are applied.</xccdf:description>
+    <xccdf:select idref="xccdf_org.ssgproject.content_group_remediation_functions" selected="false"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_group_intro" selected="false"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_group_how-to-use" selected="false"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_group_intro-reboot-required" selected="false"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_group_intro-read-sections-completely" selected="false"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_group_intro-root-shell-assumed" selected="false"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_group_intro-formatting-conventions" selected="false"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_group_intro-test-non-production" selected="false"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_group_general-principles" selected="false"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_group_principle-least-privilege" selected="false"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_group_principle-use-security-tools" selected="false"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_group_principle-minimize-software" selected="false"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_group_principle-separate-servers" selected="false"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_group_principle-encrypt-transmitted-data" selected="false"/>
     <xccdf:select idref="xccdf_org.ssgproject.content_group_ftp" selected="false"/>
     <xccdf:select idref="xccdf_org.ssgproject.content_group_ftp_use_vsftpd" selected="false"/>
     <xccdf:select idref="xccdf_org.ssgproject.content_rule_package_vsftpd_installed" selected="false"/>
@@ -1270,7 +1284,17 @@
     <xccdf:select idref="xccdf_org.ssgproject.content_group_network-firewalld" selected="true"/>
     <xccdf:select idref="xccdf_org.ssgproject.content_group_network" selected="true"/>
     <xccdf:select idref="xccdf_org.ssgproject.content_group_system" selected="true"/>
-    <xccdf:select idref="xccdf_org.ssgproject.content_rule_service_ntp_enabled" selected="true"/>
-    <xccdf:select idref="xccdf_org.ssgproject.content_group_ntp" selected="true"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_service_ntp_enabled" selected="false"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_group_ntp" selected="false"/>
+    <xccdf:refine-value idref="xccdf_org.ssgproject.content_value_var_password_pam_unix_remember" selector="4"/>
+    <xccdf:refine-value idref="xccdf_org.ssgproject.content_value_var_account_disable_post_pw_expiration" selector="90"/>
+    <xccdf:refine-value idref="xccdf_org.ssgproject.content_value_var_accounts_passwords_pam_faillock_deny" selector="6"/>
+    <xccdf:refine-value idref="xccdf_org.ssgproject.content_value_var_accounts_passwords_pam_faillock_unlock_time" selector="1800"/>
+    <xccdf:refine-value idref="xccdf_org.ssgproject.content_value_sshd_idle_timeout_value" selector="15_minutes"/>
+    <xccdf:refine-value idref="xccdf_org.ssgproject.content_value_var_password_pam_minlen" selector="7"/>
+    <xccdf:refine-value idref="xccdf_org.ssgproject.content_value_var_password_pam_minclass" selector="2"/>
+    <xccdf:refine-value idref="xccdf_org.ssgproject.content_value_var_accounts_maximum_age_login_defs" selector="90"/>
+    <xccdf:refine-value idref="xccdf_org.ssgproject.content_value_var_auditd_num_logs" selector="5"/>
+    <xccdf:refine-value idref="xccdf_org.ssgproject.content_value_var_multiple_time_servers" selector="rhel"/>
   </xccdf:Profile>
 </xccdf:Tailoring>
