@@ -29,7 +29,7 @@
     - name: Copy the report to the ansible master
       fetch:
         src: /tmp/{{ inventory_hostname }}.html
-        dest: files/hardening_reports/ 
+        dest: "{{ playbook_dir }}/files/hardening_reports/" 
         flat: yes
 
     - name: Clean up
