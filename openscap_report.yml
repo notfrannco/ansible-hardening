@@ -10,7 +10,7 @@
   tasks:
     - name: Run scan CentOS
       shell: "oscap xccdf eval --profile {{ oscap_profile }} 
-      --report /tmp/{{ inventory_hostname }}.html 
+      --report /tmp/{{ inventory_hostname }}-{{ report_name }}.html 
       --tailoring-file {{ data_stream_home }}ssg-{{ ansible_distribution }}{{ ansible_distribution_major_version }}-ds-tailoring-custom-lab.xml
                        {{ data_stream_home }}ssg-centos{{ ansible_distribution_major_version }}-ds.xml"
       register: result
@@ -20,7 +20,7 @@
 
     - name: Run scan RedHat
       shell: "oscap xccdf eval --profile {{ oscap_profile }} 
-      --report /tmp/{{ inventory_hostname }}.html 
+      --report /tmp/{{ inventory_hostname }}-{{ report_name }}.html 
       --tailoring-file {{ data_stream_home }}ssg-{{ ansible_distribution }}{{ ansible_distribution_major_version }}-ds-tailoring-custom-lab.xml
                        {{ data_stream_home }}ssg-rhel{{ ansible_distribution_major_version }}-ds.xml"
       when: ansible_distribution == "RedHat"
@@ -29,12 +29,12 @@
 
     - name: Copy the report to the ansible master
       fetch:
-        src: /tmp/{{ inventory_hostname }}.html
-        dest: "{{ report_dest | default('files') }}/hardening_reports/{{ inventory_hostname }}-{{ report_name }}.html"
+        src: /tmp/{{ inventory_hostname }}-{{ report_name }}.html
+        dest: "{{ report_dest | default('files') }}/hardening_reports/"
         flat: yes
 
     - name: Clean up
       file:
-        path: /tmp/{{ inventory_hostname }}.html
+        path: /tmp/{{ inventory_hostname }}-{{ report_name }}.html
         state: absent
 ...
