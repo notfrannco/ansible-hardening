@@ -32,7 +32,7 @@
         dest: "{{ playbook_dir }}/files/hardening_reports/" 
         flat: yes
         
-     - debug: msg="{{ playbook_dir }}"
+    - debug: msg="{{ playbook_dir }}"
 
     - name: Clean up
       file:
