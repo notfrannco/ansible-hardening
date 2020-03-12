@@ -6,6 +6,7 @@
   vars:
     oscap_profile: xccdf_py.com.miempresa_profile_custom-hardening-lab
     data_stream_home: "/usr/share/xml/scap/ssg/content/"
+    report_name: "reporte"
   tasks:
     - name: Run scan CentOS
       shell: "oscap xccdf eval --profile {{ oscap_profile }} 
@@ -29,7 +30,7 @@
     - name: Copy the report to the ansible master
       fetch:
         src: /tmp/{{ inventory_hostname }}.html
-        dest: "{{ report_dest | default('files') }}/hardening_reports/"
+        dest: "{{ report_dest | default('files') }}/hardening_reports/{{ inventory_hostname }}-{{ report_name }}.html"
         flat: yes
 
     - name: Clean up
