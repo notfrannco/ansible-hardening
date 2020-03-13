@@ -1,8 +1,9 @@
 [all]
-server1 ansible_host=192.168.102.246
-server2 ansible_host=192.168.102.247
-server3 ansible_host=192.168.102.248
-
-
-[proxy]
+# serverx ansible_host=ip
+server1
+server2
 server3
+
+
+#[proxy]
+#server3
