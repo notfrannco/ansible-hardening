@@ -2,7 +2,7 @@
 - name: Playbook para agregar usuario ansible
   hosts: all
   vars:
-    ansible_local_user: "{{ user }}"
+    ansible_local_user: "{{ user | default('ansible') }}"
   tasks:
     - name: asegurarse que existe el grupo {{ ansible_local_user }}
       group:
