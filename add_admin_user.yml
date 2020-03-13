@@ -26,7 +26,7 @@
         state: present
         expires: -1
         system: yes
-        password: "$6$smLM7CNBpznB0W8t$6g.ytaJ3DT6b.omjL3U8.ry6kJWwDTjYzLGayBR/UDjTI3e3PWHy4SwQlasOMnwcrndEIqsFXwupyiqbp8Xgp0"
+        password: "$6$3C1IdCB5$dri.W5Caua7a.6DIjjyOg8anHOnPoY8tF1upTHQ5mv1h177tVbkfYqSNGNw7WmhbbCCEXll.n3nqWPwAFcPfk/"
       notify:
         - ansible password does not expires
 
