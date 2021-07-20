@@ -1,8 +1,6 @@
 [all]
 # serverx ansible_host=ip
-server1
-server2
-server3
+
 
 
 #[proxy]

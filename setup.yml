@@ -17,5 +17,8 @@
 
     - name: Copy custom policies 
       copy:
-        src: files/ds/ssg-{{ ansible_distribution }}{{ ansible_distribution_major_version }}-ds-tailoring-custom-lab.xml
+        src: "{{ item }}"
         dest: "{{ data_stream_home }}"
+      loop:
+        - files/ds/ssg-{{ ansible_distribution }}{{ ansible_distribution_major_version }}-ds-tailoring-custom-lab.xml
+        - files/ds/ssg-centos7-ds.xml
