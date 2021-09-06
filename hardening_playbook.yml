@@ -144,7 +144,7 @@
 
     - name: Add SSH banner
       copy:
-        content: "{{ ssh_login_banner }}"
+        content: "{{ ssh_login_banner | default('BANNER DERFAULT') }}"
         dest: /etc/issue
         owner: root
         group: root
