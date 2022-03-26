@@ -1,6 +1,6 @@
 ---
 - name: Playbook para agregar usuario ansible
-  hosts: all
+  hosts: "{{ target | default('all') }}"
   vars:
     ansible_local_user: "{{ user | default('ansible') }}"
   tasks:
@@ -26,7 +26,7 @@
         state: present
         expires: -1
         system: yes
-        password: "$6$3C1IdCB5$dri.W5Caua7a.6DIjjyOg8anHOnPoY8tF1upTHQ5mv1h177tVbkfYqSNGNw7WmhbbCCEXll.n3nqWPwAFcPfk/"
+        password: "$6$IjDCEDyFra5Vjoq7$WZcjqfaFMmYGwkQ2CfScmA4L2P2udgijvLCSS5zmhawDMYbr5T7O2jxAAsJHQPeMhkywbZ0778tDKhHdHtQlw1"
       notify:
         - ansible password does not expires
 
@@ -36,7 +36,7 @@
         path: /home/{{ ansible_local_user }}/.ssh/authorized_keys
         key: "{{ item }}"
       with_file:
-        - /home/{{ ansible_local_user }}/.ssh/id_rsa.pub
+        - ansible_ssh_key.pub
       tags:
         - set_ssh_keybase_login
   handlers:

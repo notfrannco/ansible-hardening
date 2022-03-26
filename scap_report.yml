@@ -6,8 +6,10 @@
     oscap_profile: xccdf_py.com.miempresa_profile_custom-hardening-lab
     data_stream_home: "/usr/share/xml/scap/ssg/content/"
     report_name: "reporte"
+    #report_prefix: "{{ ansible_date_time.date }}-{{ ansible_default_ipv4.address }}-{{ inventory_hostname }}"
     report_prefix: "{{ ansible_date_time.date }}-{{ ansible_default_ipv4.address }}-{{ inventory_hostname }}"
-    report_dest: "files/hardening_reports/"
+    #report_dest: "files/hardening_reports/"
+    report_dest: "/opt/repo/"
   tasks:
     - name: Create xml scan report
       shell: >
@@ -24,13 +26,19 @@
       ignore_errors: yes
       failed_when: result.rc >= 3
 
-    - name: Copy the report to the ansible master
-      fetch:
+    - name: copy the report in the repo server
+      copy:
         src: /tmp/{{ report_prefix }}-{{ report_name }}.html
-        dest: "{{ report_dest | default('files') }}"
-        flat: yes
-      tags:
-        - fetch
+        dest: "{{ report_dest }}"
+        remote_src: yes
+
+    #- name: Copy the report to the ansible master
+    #  fetch:
+    #    src: /tmp/{{ report_prefix }}-{{ report_name }}.html
+    #    dest: "{{ report_dest | default('files') }}"
+    #    flat: yes
+    #  tags:
+    #    - fetch
 
     - name: Clean up
       file:
